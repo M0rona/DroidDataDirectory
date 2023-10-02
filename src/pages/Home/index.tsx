@@ -37,6 +37,7 @@ export const Home = () => {
               <Styled.Section 
                 $width={windowWidth < 1024 ? "100%" : "45rem"} 
                 $transp={true} 
+                $leaked={true}
                 $scroll={windowWidth > 1024 ? true : !isMobile}
               >
                   <SectionCharacters />

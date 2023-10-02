@@ -38,6 +38,7 @@ interface CharacterContextType {
   getCharacters: (firstLoading: boolean) => Promise<void>;
   setWindowWidth: (windowWidth: number) => void;
   setIsMobile: (isMobile: boolean) => void;
+  setPage: (page: number | null) => void;
 }
 
 const CharacterContext = createContext<CharacterContextType | undefined>(undefined);
@@ -94,7 +95,8 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
         setActiveFilter,
         getCharacters,
         setWindowWidth,
-        setIsMobile
+        setIsMobile,
+        setPage
       }}
     >
       {children}

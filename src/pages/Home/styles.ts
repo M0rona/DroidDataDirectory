@@ -6,6 +6,7 @@ interface SectionProps {
   $transp?: boolean;
   $gap?: boolean;
   $scroll?: boolean;
+  $leaked?: boolean;
 }
 
 export const Header = styled.header`
@@ -44,7 +45,7 @@ export const Section = styled.section<SectionProps>`
     display: flex;
     flex-direction: column;
     gap: ${({ $gap }) => $gap ? 0 : 25}px;
-    ${({ $scroll }) => $scroll && 'overflow-y: auto;'}
+    ${({ $scroll, $leaked }) => $scroll && !$leaked && 'overflow-y: auto;'}
 `;
 
 export const ButtonBack = styled.button`

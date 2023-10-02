@@ -9,6 +9,13 @@ export const DropDawn = styled.div`
     right: -39rem;
     top: -20px;
 
+    @media screen and (max-width: 1024px) {
+        right: 0;
+        top: 60px;
+
+        width: 30rem;
+    }
+
     background-color: #1D1E1F;
     border: 1px solid #4D4C4C;
     width: 35rem;
@@ -67,7 +74,22 @@ export const DropDawn = styled.div`
             justify-content: center;
             align-items: center;
 
-            cursor: default;
+            cursor: pointer;
+            user-select: none;
         }
     }
+`
+
+export const Tooltip = styled.div`
+    position: absolute;
+    
+    top: -30px;
+    right: 20px;
+
+    background-color: #9E7C00;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+
+    user-select: none;
 `

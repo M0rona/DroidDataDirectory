@@ -1,5 +1,7 @@
-import * as Styled from '../styles'
 import { Skeleton } from '../../../../components/Skeleton'
+import { SkeletonFilms } from './SkeletonFilms'
+
+import * as Styled from '../styles'
 
 export const InfosSkeleton = () => {
   return (
@@ -11,7 +13,11 @@ export const InfosSkeleton = () => {
         <Styled.Infos>
           <Skeleton width="90%" height="0.8rem" repeat={5} lowGap={true} />
           <Skeleton width="18.9rem" height="5rem" horizontal={true} repeat={3} />
+
+          <SkeletonFilms />
         </Styled.Infos>
+
+        
     </>
   )
 }

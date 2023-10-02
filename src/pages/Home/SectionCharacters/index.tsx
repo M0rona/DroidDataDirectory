@@ -18,7 +18,8 @@ export const SectionCharacters = () => {
       page,
       loading,
       setLoading,
-      getCharacters
+      getCharacters,
+      activeFilter
   } = useCharacterContext();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export const SectionCharacters = () => {
   }, [])
 
   useEffect(() => {
-    if(!loading && charactersList.current && page != null) {
+    if(!loading && charactersList.current && page != null && !activeFilter) {
       const intObserver = new IntersectionObserver((entries) => {
         if(entries.some((entry) => entry.isIntersecting)) {
           getCharacters(false);
@@ -40,7 +41,7 @@ export const SectionCharacters = () => {
   
       return () => intObserver.disconnect();
     }
-  }, [loading])
+  }, [loading, activeFilter])
 
   return (
     <>

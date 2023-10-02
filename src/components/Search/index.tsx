@@ -9,17 +9,25 @@ import { Button } from '../../styles/Button';
 
 export const Search: React.FC = () => {
   const [name, setName] = useState<string | null>(null);
-  const { setCharacters, setLoading, setIdCharacter } = useCharacterContext();
+  const { 
+    setCharacters, 
+    setLoading, 
+    setIdCharacter, 
+    setActiveFilter,
+    setPage } = useCharacterContext();
 
   const search = async () => {
     setCharacters([]);
     setLoading(true);
+    setPage(2);
 
     try {
-      const { data} = await apiSw.get(`/people${name ? `/?search=${name}` : ''}`);
+      const { data } = await apiSw.get(`/people${name ? `/?search=${name}` : ''}`);
 
       setCharacters(data.results);
       setIdCharacter(0);
+
+      setActiveFilter(name ? true : false)
     } catch (error) {
       console.error('Error when searching for character: ', error);
     } finally {

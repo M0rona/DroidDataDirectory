@@ -9,7 +9,11 @@ export const Operator = ({ selected }: OperatorProps) => {
   const [operator, setOperator] = useState<string>("equal");
   const [inputValue, setInputValue] = useState<string>("");
 
-  const { characters, setCharactersFiltred, setIdCharacter } = useCharacterContext();
+  const { 
+    characters, 
+    setCharactersFiltred, 
+    setIdCharacter,
+    setActiveFilter } = useCharacterContext();
 
   const search = () => {
     setCharactersFiltred(characters.filter((character) => {
@@ -28,6 +32,8 @@ export const Operator = ({ selected }: OperatorProps) => {
               return false;
         }
     }));
+
+    setActiveFilter(true)
   };
   
 

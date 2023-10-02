@@ -53,6 +53,7 @@ export const PersonInfos = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 3.5rem;
+    margin-right: 2rem;
 
     div {
         display: flex;

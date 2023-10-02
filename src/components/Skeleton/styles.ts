@@ -13,9 +13,9 @@ interface DispositionTypes {
 
 export const Container = styled.div<ContainerTypes>`
     background: linear-gradient(
-        110deg, #363636 8%,
-        #5e5e5e 18%,
-        #363636 33%
+        110deg, #363636 19%,
+        #5e5e5e 25%,
+        #363636 40%
     );
     background-size: 200% 100%;
     width: ${({ $width }) => $width ? $width : '95%'};

@@ -9,7 +9,11 @@ export const FixedFilters = ({ selected }: FixedFiltersProps) => {
   const [options, setOptions] = useState<{ value: string; text: string }[] | null>(null);
   const [optSelected, setOptSelected] = useState<string>("default");
 
-  const { characters, setCharactersFiltred, setIdCharacter } = useCharacterContext();
+  const { 
+    characters, 
+    setCharactersFiltred, 
+    setIdCharacter,
+    setActiveFilter } = useCharacterContext();
 
   useEffect(() => {
     switch (selected) {
@@ -72,6 +76,7 @@ export const FixedFilters = ({ selected }: FixedFiltersProps) => {
         return v.includes(optSelected);
       }));
 
+      setActiveFilter(true)
       setIdCharacter(0);
     }
   }, [optSelected]);

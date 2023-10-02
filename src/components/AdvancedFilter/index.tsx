@@ -11,6 +11,8 @@ import { Button } from '../../styles/Button';
 import * as Styled from './styles';
 
 export const AdvancedFilter = () => {
+  const [ open, setOpen ] = useState<boolean>(false);
+  const [ alertOpen , setAlertOpen ] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>("default");
 
   const { 
@@ -21,35 +23,42 @@ export const AdvancedFilter = () => {
   } = useCharacterContext();
 
   const handleClickFilter = () => {
-    if (!activeFilter && charactersFiltred?.length) {
+    if (activeFilter && !open && charactersFiltred?.length) {
         setCharactersFiltred([]);
         setSelected("default");
 
+        setActiveFilter(false);
+        
         return;
     }
-    setActiveFilter(!activeFilter);
+    
+    setOpen(!open);
   };
 
   return (
     <Styled.Container>
       <Button 
         onClick={handleClickFilter} 
-        title={!(!activeFilter && charactersFiltred?.length) ? "Filter loaded characters" : "Clear filters"}
+        title={!(activeFilter && charactersFiltred?.length) ? "Filter loaded characters" : "Clear filters"}
       >
-        {!(!activeFilter && charactersFiltred?.length) && 
+        {!(activeFilter && !open && charactersFiltred?.length) && 
           <img src={Filter} alt="IconFilter"/>
         }
         
-        {(!activeFilter && charactersFiltred.length != 0) && 
+        {(activeFilter && !open && charactersFiltred.length != 0) && 
           <img src={clearFilter} alt="IconClearFilter"/>
         }
       </Button>
 
-      {activeFilter && 
+      {open && 
         <Styled.DropDawn>
           <div>
             <h2>Filter characters by: </h2>
-            <span title="Only uploaded data will be filtered">!</span>
+            <span onClick={() => setAlertOpen((currentOpen) => !currentOpen)}>!</span>
+
+            {alertOpen && 
+              <Styled.Tooltip>Only uploaded data will be filtered</Styled.Tooltip>
+            }
           </div>
           
           <select name="optionsFilter" value={selected} onChange={(e) => setSelected(e.target.value)}>
