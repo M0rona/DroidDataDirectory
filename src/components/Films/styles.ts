@@ -65,7 +65,7 @@ export const Blur = styled.div`
 
 export const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     column-gap: 3rem;
     row-gap: 3rem;
 

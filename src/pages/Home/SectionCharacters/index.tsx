@@ -26,9 +26,9 @@ export const SectionCharacters = () => {
   }, [])
 
   useEffect(() => {
-    if(!loading && charactersList.current) {
+    if(!loading && charactersList.current && page != null) {
       const intObserver = new IntersectionObserver((entries) => {
-        if(entries.some((entry) => entry.isIntersecting) && typeof page == 'number') {
+        if(entries.some((entry) => entry.isIntersecting)) {
           getCharacters(false);
           setLoading(true);
         }

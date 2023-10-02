@@ -7,7 +7,7 @@ export const ImageSection = styled.section<{$img? : string | null}>`
     };
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top; 
+    background-position: center; 
 
     min-height: 38.5rem;
 
@@ -17,6 +17,14 @@ export const ImageSection = styled.section<{$img? : string | null}>`
 
     h1 {
         font-size: 6rem;
+    }
+
+    @media screen and (max-width: 500px) {
+        min-height: 20rem;
+
+        h1 {
+            font-size: 3.2rem;
+        }
     }
 `;
 
@@ -33,10 +41,17 @@ export const Infos = styled.section`
 
         width:95%;
     }
+
+    @media screen and (max-width: 500px) {
+        p {
+            font-size: 1.3rem;
+        }
+    }
 `
 
 export const PersonInfos = styled.div`
     display: flex;
+    flex-wrap: wrap;
     gap: 3.5rem;
 
     div {
@@ -45,10 +60,16 @@ export const PersonInfos = styled.div`
         align-items: center;
         gap: 1.3rem;
 
+
+
         div {
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
+
+            @media screen and (max-width: 500px) {
+                width: 100%;
+            }
 
             h3 {
                 color: #B6B6B6;

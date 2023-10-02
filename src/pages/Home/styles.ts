@@ -35,6 +35,7 @@ export const Characters = styled.ul`
 
 export const Section = styled.section<SectionProps>`
     ${({ $width }) => $width ? `width: ${$width};` : 'flex: 1;'};
+    height: ${({ $scroll }) => $scroll ? '100%' : 'fit-content' };
     padding: ${({ $padding }) => $padding ? 0 : '20px 0px 20px 20px'};
     border-radius: 8px;
     border: 1px solid #4D4C4C;
@@ -45,3 +46,29 @@ export const Section = styled.section<SectionProps>`
     gap: ${({ $gap }) => $gap ? 0 : 25}px;
     ${({ $scroll }) => $scroll && 'overflow-y: auto;'}
 `;
+
+export const ButtonBack = styled.button`
+    width: 100%;
+
+    background-color: rgba(29, 30, 31, 0.85);
+    border: none;
+    border-radius: 0.8rem;
+    margin-top: 3rem;
+    padding: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    img {
+        height: auto;
+        width: 18px;
+    }
+
+    span {
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+`

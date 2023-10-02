@@ -2,8 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import backgroundImagem from "../assets/Background.jpg";
 import Arrow from "../assets/icons/Arrow.svg"
 
-
-export default createGlobalStyle`
+export default createGlobalStyle<{$scrollPage: boolean}>`
     * {
         margin: 0;
         padding: 0;
@@ -12,7 +11,7 @@ export default createGlobalStyle`
     }
     
     html, body, #root {
-        height: 100%
+        ${({$scrollPage}) => $scrollPage && 'height: 100vh'}
     }
 
     html {
@@ -26,7 +25,6 @@ export default createGlobalStyle`
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        object-fit: cover;
 
         font: 1.8rem 'Montserrat', sans-serif;
         color: #fff;

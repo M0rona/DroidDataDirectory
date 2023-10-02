@@ -7,7 +7,12 @@ interface CharacterProps {
 }
 
 export const Character= ({ name, index }: CharacterProps) => {
-    const { idCharacter, setIdCharacter } = useCharacterContext();
+    const { idCharacter, setIdCharacter, setIsMobile } = useCharacterContext();
 
-    return <Container $active={idCharacter == index} onClick={() => setIdCharacter(index)}>{name}</Container>;
+    const handleClickCharacter = () => {
+      setIdCharacter(index);
+      setIsMobile(true);
+    }
+
+    return <Container $active={idCharacter == index} onClick={handleClickCharacter}>{name}</Container>;
 };

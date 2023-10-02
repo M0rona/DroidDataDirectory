@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, ReactNode } from "react";
+import { useContext, createContext, useState, ReactNode, useEffect } from "react";
 import { apiSw } from "../service/axios";
 
 interface Character {
@@ -28,12 +28,16 @@ interface CharacterContextType {
   loading: boolean;
   page: number | null;
   activeFilter: boolean;
+  windowWidth: number;
+  isMobile: boolean;
   setCharacters: (characters: Character[]) => void;
   setCharactersFiltred: (charactersFiltred: Character[]) => void;
   setIdCharacter: (setIdCharacter: number) => void;
   setLoading: (loading: boolean) => void;
   setActiveFilter: (activeFilter: boolean) => void;
   getCharacters: (firstLoading: boolean) => Promise<void>;
+  setWindowWidth: (windowWidth: number) => void;
+  setIsMobile: (isMobile: boolean) => void;
 }
 
 const CharacterContext = createContext<CharacterContextType | undefined>(undefined);
@@ -45,6 +49,8 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number | null>(1);
   const [idCharacter, setIdCharacter] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const getCharacters = async (firstLoading: boolean): Promise<void> => {
     try {
@@ -54,13 +60,21 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
         firstLoading ? data.results : [...currentCharacters, ...data.results]
       );
 
-      data.next ? setPage((currentPage) => currentPage && currentPage +1) : setPage(null);
+      data.next ? setPage((currentPage) => currentPage && currentPage + 1) : setPage(null);
     } catch (error) {
       console.error("Error inserting characters: ", error);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+
+    return () => {
+      window.removeEventListener('resize', () => setWindowWidth(window.innerWidth));
+    };
+  }, []);
 
   return (
     <CharacterContext.Provider
@@ -71,12 +85,16 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
         loading,
         page,
         activeFilter,
+        windowWidth,
+        isMobile,
         setCharacters,
         setCharactersFiltred,
         setIdCharacter,
         setLoading,
         setActiveFilter,
         getCharacters,
+        setWindowWidth,
+        setIsMobile
       }}
     >
       {children}
