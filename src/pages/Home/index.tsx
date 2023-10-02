@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useCharacterContext } from '../../contexts/Characters';
 
 import LogoStarWars from '../../assets/logos/StarWars.png'
@@ -11,11 +12,19 @@ import * as Styled from './styles'
 import GlobalStyles from '../../styles/Global';
 
 export const Home = () => {
-  const { windowWidth, isMobile, setIsMobile } = useCharacterContext();
+  const { 
+    windowWidth, 
+    isMobile, 
+    setIsMobile, 
+    getCharacters } = useCharacterContext();
 
   const returnCharacters = () => {
     if(windowWidth < 1024 && isMobile) setIsMobile(false)
   }
+
+  useEffect(() => {
+    getCharacters(true);
+  }, [])
 
   return (
     <>

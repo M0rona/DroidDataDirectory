@@ -23,10 +23,6 @@ export const SectionCharacters = () => {
   } = useCharacterContext();
 
   useEffect(() => {
-    getCharacters(true);
-  }, [])
-
-  useEffect(() => {
     if(!loading && charactersList.current && page != null && !activeFilter) {
       const intObserver = new IntersectionObserver((entries) => {
         if(entries.some((entry) => entry.isIntersecting)) {
