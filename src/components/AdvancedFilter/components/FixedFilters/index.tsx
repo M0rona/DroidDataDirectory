@@ -73,7 +73,7 @@ export const FixedFilters = ({ selected }: FixedFiltersProps) => {
       setCharactersFiltred(characters.filter(character => {
         const v = character[selected];
         
-        return v.includes(optSelected);
+        return selected != 'gender' ? v.includes(optSelected) : v === optSelected;
       }));
 
       setActiveFilter(true)

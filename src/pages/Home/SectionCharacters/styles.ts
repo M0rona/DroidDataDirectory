@@ -17,3 +17,12 @@ export const Characters = styled.ul`
   overflow: hidden;
   overflow-y: auto;
 `;
+
+export const NumberCharacters = styled.p`
+  color: #B6B6B6;
+
+  span {
+    color: #fff;
+    font-weight: bold;
+  }
+`

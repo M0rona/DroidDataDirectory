@@ -8,7 +8,6 @@ import { Skeleton } from '../../../components/Skeleton';
 
 import * as Styled from './styles'
 
-
 export const SectionCharacters = () => {
   const charactersList = useRef<HTMLUListElement | null>(null);
 
@@ -49,8 +48,13 @@ export const SectionCharacters = () => {
 
         <Search />
 
+        <Styled.NumberCharacters>
+          Number of characters: 
+          <span> {activeFilter ? charactersFiltred.length : characters.length}</span>
+        </Styled.NumberCharacters>
+
         <Styled.Characters ref={charactersList}>
-          { (charactersFiltred?.length ? charactersFiltred : characters ).map((personagem, index) => (
+          { (activeFilter ? charactersFiltred : characters ).map((personagem, index) => (
               <Character 
                   key={personagem.name} 
                   name={personagem.name}

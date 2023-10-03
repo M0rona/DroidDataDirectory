@@ -18,12 +18,11 @@ export const AdvancedFilter = () => {
   const { 
     activeFilter, 
     setActiveFilter, 
-    charactersFiltred, 
     setCharactersFiltred 
   } = useCharacterContext();
 
   const handleClickFilter = () => {
-    if (activeFilter && !open && charactersFiltred?.length) {
+    if (activeFilter && !open ) {
         setCharactersFiltred([]);
         setSelected("default");
 
@@ -39,13 +38,13 @@ export const AdvancedFilter = () => {
     <Styled.Container>
       <Button 
         onClick={handleClickFilter} 
-        title={!(activeFilter && charactersFiltred?.length) ? "Filter loaded characters" : "Clear filters"}
+        title={!activeFilter ? "Filter loaded characters" : "Clear filters"}
       >
-        {!(activeFilter && !open && charactersFiltred?.length) && 
+        {!(activeFilter && !open) && 
           <img src={Filter} alt="IconFilter"/>
         }
         
-        {(activeFilter && !open && charactersFiltred.length != 0) && 
+        {(activeFilter && !open) && 
           <img src={clearFilter} alt="IconClearFilter"/>
         }
       </Button>
