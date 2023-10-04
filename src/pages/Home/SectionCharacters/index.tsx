@@ -62,7 +62,7 @@ export const SectionCharacters = () => {
               />
           )) }
 
-          {(loading && charactersFiltred.length == 0) && <Skeleton height="60px" repeat={9} />}
+          {(loading && !charactersFiltred.length) && <Skeleton height="60px" repeat={9} />}
         </Styled.Characters>
     </>
   )

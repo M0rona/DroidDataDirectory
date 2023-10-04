@@ -10,29 +10,33 @@ import { Button } from '../../styles/Button';
 export const Search: React.FC = () => {
   const [name, setName] = useState<string | null>(null);
   const { 
-    setCharacters, 
+    setCharactersFiltred, 
     setLoading, 
     setIdCharacter, 
-    setActiveFilter,
-    setPage } = useCharacterContext();
+    setActiveFilter } = useCharacterContext();
 
   const search = async () => {
-    setCharacters([]);
+    setCharactersFiltred([])
     setLoading(true);
-    setPage(2);
 
-    try {
-      const { data } = await apiSw.get(`/people${name ? `/?search=${name}` : ''}`);
+    if(name) {
+      setActiveFilter(true);
+      
+      try {
+        const { data } = await apiSw.get(`/people${name ? `/?search=${name}` : ''}`);
+  
+        setCharactersFiltred(data.results);
+        setIdCharacter(0);
 
-      setCharacters(data.results);
-      setIdCharacter(0);
-
-      setActiveFilter(name ? true : false)
-    } catch (error) {
-      console.error('Error when searching for character: ', error);
-    } finally {
-      setLoading(false);
+      } catch (error) {
+        console.error('Error when searching for character: ', error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setActiveFilter(false)
     }
+    
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +48,7 @@ export const Search: React.FC = () => {
       <input
         type="text"
         placeholder="Search character"
+        id="searchInput"
         onChange={handleInputChange}
       />
 

@@ -27,7 +27,11 @@ export const AdvancedFilter = () => {
         setSelected("default");
 
         setActiveFilter(false);
-        
+
+        const searchInput = document.querySelector('#searchInput') as HTMLInputElement;
+
+        if(searchInput) searchInput.value = ''
+
         return;
     }
     
