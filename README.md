@@ -19,7 +19,7 @@ Clique [aqui](https://m0rona.github.io/DroidDataDirectory/) para acessar o proje
 Para instalar o projeto em sua máquina, basta clonar o repositório e instalar as dependências, cole os comandos abaixo em seu terminal:
 
 ```
-git clone https://github.com/seu-usuario/DroidDataDirectory.git
+git clone https://github.com/M0rona/DroidDataDirectory.git
 cd DroidDataDirectory
 npm install
 ```
